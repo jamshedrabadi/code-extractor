@@ -1,5 +1,5 @@
 const config = {
-	ROOT_PATH: "", // root path of the project, use \\
+	ROOT_PATH: "",  // root path of the project
 
 	ROOT_FILES: [], // files directly in the root folder to extract code from
 
