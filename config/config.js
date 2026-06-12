@@ -5,21 +5,9 @@ const config = {
 
 	ROOT_FOLDERS: [],
 
-	INCLUDED_EXTENSIONS: [
-		".js",
-		".ts",
-		".tsx",
-	],
+	INCLUDED_EXTENSIONS: [],
 
-	IGNORED_NAMES: [
-		".git",
-		".gitignore",
-		".editorconfig",
-		"eslint.config.js",
-		"package.json",
-		"package-lock.json",
-		"node_modules",
-	],
+	IGNORED_NAMES: [],
 
 	OUTPUT_DIRECTORY: "output",
 
