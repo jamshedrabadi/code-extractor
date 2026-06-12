@@ -10,19 +10,31 @@ export const extractCode = () => {
 
 	const rootPath = path.resolve(config.ROOT_PATH);
 
-	processRootFiles( // processes files directly in the root folder
-		rootPath,
-		extractedFiles,
-		extractedPaths,
-		warnings,
-	);
+	if (
+		config.ROOT_FILES.length === 0 &&
+		config.ROOT_FOLDERS.length === 0 // both empty = everything in the project
+	) {
+		traverseDirectory(
+			rootPath,
+			rootPath,
+			extractedFiles,
+			extractedPaths,
+		);
+	} else {
+		processRootFiles( // processes files directly in the root folder
+			rootPath,
+			extractedFiles,
+			extractedPaths,
+			warnings,
+		);
 
-	processRootFolders( // processes all files/subfolders in specified root folders
-		rootPath,
-		extractedFiles,
-		extractedPaths,
-		warnings,
-	);
+		processRootFolders( // processes all files/subfolders in specified root folders
+			rootPath,
+			extractedFiles,
+			extractedPaths,
+			warnings,
+		);
+	}
 
 	return {
 		extractedFiles,
@@ -139,7 +151,10 @@ const addFile = ( // adds a file to the extracted files list
 ) => {
 	const extension = path.extname(filePath);
 
-	if (!config.INCLUDED_EXTENSIONS.includes(extension)) {
+	if (
+		config.INCLUDED_EXTENSIONS.length > 0 && // include all files if no extensions specified
+		!config.INCLUDED_EXTENSIONS.includes(extension)
+	) {
 		return;
 	}
 
