@@ -36,7 +36,9 @@ const processRootFiles = ( // processes files directly in the root folder
 	extractedPaths,
 	warnings,
 ) => {
-	const rootFiles = [...config.ROOT_FILES].sort();
+	const rootFiles = [...config.ROOT_FILES]
+		.filter((file) => !config.IGNORED_NAMES.includes(file))
+		.sort();
 
 	for (const fileName of rootFiles) {
 		const filePath = path.join(rootPath, fileName);
@@ -66,7 +68,9 @@ const processRootFolders = ( // processes all files/subfolders in specified root
 	extractedPaths,
 	warnings,
 ) => {
-	const rootFolders = [...config.ROOT_FOLDERS].sort();
+	const rootFolders = [...config.ROOT_FOLDERS]
+		.filter((folder) => !config.IGNORED_NAMES.includes(folder))
+		.sort();
 
 	for (const folderName of rootFolders) {
 		const folderPath = path.join(rootPath, folderName);

@@ -25,8 +25,6 @@ const main = () => {
 		config.OUTPUT_FILENAME,
 	);
 
-	fs.writeFileSync(outputFile, ""); // create or clear the output file
-
 	logger.log("========================================");
 	logger.log("Code Extractor");
 	logger.log("========================================");
@@ -59,7 +57,7 @@ const main = () => {
 };
 
 try {
-	await main();
+	main();
 } catch (error) {
 	logger.error(error);
 	process.exit(1);
